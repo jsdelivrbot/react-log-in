@@ -21,10 +21,21 @@ export function signinUser({ email, password }) {
     .catch((err) => {
       //If request is bad...
       //- Show error
-      return {
-        type: ERROR_USER,
-        payload: 'bad user info'
-      };
+      dispatch(authError('Bad Login Info'));
     })
   };
+}
+
+export function authError(error) {
+
+  return {
+    type: ERROR_USER,
+    payload: error
+  };
+}
+
+export function signoutUser() {
+
+  localStorage.removeItem('token');
+  return { type: UNAUTH_USER };
 }

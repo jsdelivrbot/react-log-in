@@ -12,10 +12,10 @@ class Header extends Component {
     } else {
       return [
         <li className="nav-item">
-          <Link className="nav-link" to="signin">Sign in</Link>
+          <Link className="nav-link" to="signin" key={1}>Sign in</Link>
         </li>,
         <li className="nav-item">
-          <Link className="nav-link" to="signup">Sign up</Link>
+          <Link className="nav-link" to="signup" key={2}>Sign up</Link>
         </li>
       ];
     }
@@ -24,6 +24,7 @@ class Header extends Component {
   render() {
     return(
       <nav className="navbar navbar-light">
+        <Link className="navbar-brand" to="/">Redux Auth</Link>
         <ul className="nav navbar-nav">
           {this.renderLinks()}
         </ul>
