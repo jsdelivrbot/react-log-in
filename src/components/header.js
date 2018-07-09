@@ -11,11 +11,11 @@ class Header extends Component {
       </li>
     } else {
       return [
-        <li className="nav-item">
-          <Link className="nav-link" to="signin" key={1}>Sign in</Link>
+        <li className="nav-item" key={1}>
+          <Link className="nav-link" to="signin">Sign in</Link>
         </li>,
-        <li className="nav-item">
-          <Link className="nav-link" to="signup" key={2}>Sign up</Link>
+        <li className="nav-item" key={2}>
+          <Link className="nav-link" to="signup">Sign up</Link>
         </li>
       ];
     }
