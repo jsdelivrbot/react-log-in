@@ -1,34 +1,64 @@
 import React, { Component } from 'react';
-import { Field, reduxForm } from 'redux-form';
+import { reduxForm, Field } from 'redux-form';
+import { connect } from 'react-redux';
 import * as actions from '../../actions';
 
 class Signup extends Component {
-
   render() {
+    console.log(this.props);
     const { handleSubmit } = this.props;
-    return(
+
+    return (
       <form>
         <fieldset className="form-group">
           <label>Email</label>
-          <Field className="form-control" name="email"
-            component="input" type="text" />
+          <Field
+            className="form-control"
+            name="email"
+            type="text"
+            component="input"
+            autoComplete="none"
+          />
         </fieldset>
-        <fieldset>
+        <fieldset className="form-group">
           <label>Password</label>
-          <Field className="form-control" name="password"
-            component="input" type="password" />
+          <Field
+            className="form-control"
+            name="password"
+            type="password"
+            component="input"
+            autoComplete="none"
+          />
+
         </fieldset>
-        <fieldset>
-          <label>Confirm Password</label>
-          <Field className="form-control" name="passwordConfirm"
-            component="input" type="password" />
+        <fieldset className="form-group">
+          <label>Confirm Password:</label>
+          <Field
+            className="form-control"
+            name="passwordConfirm"
+            type="password"
+            component="input"
+            autoComplete="none"
+          />
         </fieldset>
-        <button action="submit" className="btn btn-primary">Sign up</button>
+        <div>{this.props.errorMessage}</div>
+        <button className="btn btn-primary">Sign Up!</button>
       </form>
     );
   }
 }
 
-export default reduxForm({
-   form: 'signup'
-})(Signup);
+function validate(formProps) {
+
+  const errors = {};
+
+  if(formProps.password !== formProps.passwordConfirm) {
+    errors.password = 'Passwords must match';
+  }
+
+
+  return errors;
+
+}
+
+export default reduxForm({ form: 'signup', validate})(Signup);
